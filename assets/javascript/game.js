@@ -6,20 +6,21 @@
  *      create an array of words to guess from ✅
  *      display a word at a time with underscores to show the character count ✅
  */
+const log = console.log;
 
 $(function () {
     var losses = 0;
     var wins = 0;
-    var tries = 10; 
+    var tries = 10;
 
     $('#wins').append(wins);
     $('#losses').append(losses);
     $('#tries').append(tries);
 
-    var words = ['milk', 'drink', 'butter', 'fish', 'meal', 'cereal', 'health food', 'wheat', 'protein', 'dairy'];
+    var words = ['lilk', 'drink', 'butter', 'fish', 'meal', 'cereal', 'healthy', 'wheat', 'protein', 'dairy'];
 
     // Two options to select a word from the list
-    // Select it from same the order shown in the array - SELECTED THIS OPTION
+    // Select it from same the order shown in the array - SELECTED THIS OPTION 
     // OR, randomly selecting words from the array without duplicating a word already selected. 
 
     // the index of the word will be stored in current_word_index
@@ -36,7 +37,7 @@ $(function () {
     // length of the characters in the word
     function displayWord(wrd) {
         for (var i = 0; i < wrd.length; i++) {
-            underscores.push('_')
+            underscores.push('_');
         }
         underscores = underscores.join(" ");
         // displays the initial word for the user to guess
@@ -46,10 +47,66 @@ $(function () {
     // displays the current word needed to be guessed
     displayWord(current_word);
 
-    $(document).on('keyup', function(e){
+    // Event listener that will listen for the user key values 
+    // on keyup
+    $(document).on('keyup', function (e) {
         var letter = e.originalEvent.key;
-        console.log(letter);
-    })
+
+        // Checks if any letters in the current_word matches 
+        // what the user just selected on keyup. 
+        checkLetter(letter);
+    });
+
+
+    // Create a function that checks if any letter the user has selected
+    // matches the ones from the current word
+    // Updates the scores
+    function checkLetter(ltr) {
+        //this will store all the indices that match 
+        // what the user has guessed   
+        var matching_index = [];
+
+        for (var i = 0; i < current_word.length; i++) {
+            // if the user's letter matches any index of the current word
+            // store this index inside of the matching_index array
+            if (ltr == current_word[i]) {
+                matching_index.push(i);
+            }
+        }
+
+
+        log(`matching_index.length > 0 :: ${matching_index.length > 0}`);
+        // display any matching letters 
+        if (matching_index.length > 0) {
+            // underscores is a string so in order to apply some methods 
+            // that can be applied only to an array converted it into an array using split() method
+            // underscores = [...underscores];
+            underscores = underscores.split(" ");
+
+            for(var x = 0; x < matching_index.length; x++){
+                // this holds the value of which index needs to display to the user
+                var changing_index = matching_index[x];
+
+                // this will assign the index needed to be displayed with the letter
+                // the user has keyed
+                underscores[changing_index] = ltr;
+            }
+
+            underscores = underscores.join(" ");
+            $('#word').text(underscores);
+        } else {
+            // no matching letters were found
+            // decrease tries by 1
+            tries--;
+            // when tries are equal to 0 increase losses by 1;
+
+            // displays remaining tries left
+            $('#tries').text('Tries: ' + tries);
+
+        }
+
+    }
+
 
 
 
