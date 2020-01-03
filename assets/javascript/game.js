@@ -46,6 +46,11 @@ $(function () {
     // displays the current word needed to be guessed
     displayWord(current_word);
 
+    $(document).on('keyup', function(e){
+        var letter = e.originalEvent.key;
+        console.log(letter);
+    })
+
 
 
 
