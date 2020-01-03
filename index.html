@@ -48,15 +48,22 @@
                      -->
 
 
-                     <!-- Main Content: Game -->
-                    <div class="jumbotron jumbrotron-fluid">
+                    <!-- Main Content: Game -->
+                    <div class="jumbotron jumbrotron-fluid py-5">
                         <div class="container">
 
                             <!-- Scores -->
-                            <div class="scores text-center alert alert-dark" role="alert">
+                            <div class="scores text-center alert alert-dark py-5" role="alert">
                                 <span id="wins" class="px-5">Wins: </span>
                                 <span id="losses" class="px-5">Losses: </span>
                                 <span id="tries" class="px-5">Tries: </span>
+                                <div class="mt-4">
+                                    <strong>
+                                        <h5>Letters Chosen</h5>
+                                    </strong>
+
+                                    <p id="keyed-letters" class="my-2"></p>
+                                </div>
                             </div>
 
                             <!-- Display the word to guess -->
@@ -66,9 +73,11 @@
                                 </strong>
                             </div>
 
+
+
                             <!-- Game Alerts -->
                             <div id="game-alert" class="alert alert-warning text-center" role="alert">
-                                You did not guess the word correctly. 
+                                <p id="game-alert-message"></p>
                             </div>
 
                         </div>
