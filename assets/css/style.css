@@ -2,6 +2,10 @@
     max-width: 40%; 
 }
 
-#wins{
+#wins, #losses{
     border-right: 2px solid #787070;
+}
+
+#word{
+    font-size: 40px;
 }
