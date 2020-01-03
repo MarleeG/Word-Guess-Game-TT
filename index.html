@@ -25,20 +25,20 @@
         <h1 class="text-center">Word-Guess-Game</h1>
 
         <!-- Game Rules -->
-        <div class="alert alert-info text-center game-rules my-3 my-2 " role="alert">
-            Guess the word below. You lose a point if you select a letter not in the word. You will add a win to your 
+        <div class="alert alert-info text-center game-rules my-4 mx-2 mx-auto" role="alert">
+            Guess the word below. You lose a point if you select a letter not in the word. You will add a win to your
             total wins if the word is guessed before all your tries are gone. Good luck!
         </div>
 
 
-        <!-- Game  -->
+        <!-- Main Content  -->
         <div class="container-fluid">
             <div class="row mx-auto">
                 <div class="col-lg-12 col-md-12 col-s-8 my-4">
                     <!-- 
                         display:
                             rules of the game ✅
-                            wins/losses
+                            wins/losses ✅
                             the underscores for the word length
                             the characters the user has selected
                             the number of tries remaining 
@@ -46,6 +46,24 @@
                             we can add user validation for each input
                             What will happen when the user keys a letter already selected?
                      -->
+
+                    <div class="jumbotron jumbrotron-fluid">
+                        <div class="container">
+
+                            <!-- Scores -->
+                            <div class="scores text-center alert alert-dark" role="alert">
+                                <span id="wins" class="px-5">Wins: </span>
+                                <span id="losses" class="px-5">Losses: </span>
+                            </div>
+
+                            <!-- Display the word to guess -->
+                            <div>
+                                <p id='word'></p>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                 </div>
             </div>

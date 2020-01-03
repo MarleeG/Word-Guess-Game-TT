@@ -1,3 +1,7 @@
-body{
-    background-color: yellow;
+.game-rules{
+    max-width: 40%; 
+}
+
+#wins{
+    border-right: 2px solid #787070;
 }
