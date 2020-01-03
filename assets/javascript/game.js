@@ -11,11 +11,12 @@ const log = console.log;
 $(function () {
     var losses = 0;
     var wins = 0;
-    var tries = 10;
+    var tries = 2;
 
     $('#wins').append(wins);
     $('#losses').append(losses);
     $('#tries').append(tries);
+    $("#game-alert").hide();
 
     var words = ['lilk', 'drink', 'butter', 'fish', 'meal', 'cereal', 'healthy', 'wheat', 'protein', 'dairy'];
 
@@ -36,6 +37,7 @@ $(function () {
     // this function will display the underscores totalling the 
     // length of the characters in the word
     function displayWord(wrd) {
+        underscores = [];
         for (var i = 0; i < wrd.length; i++) {
             underscores.push('_');
         }
@@ -83,7 +85,7 @@ $(function () {
             // underscores = [...underscores];
             underscores = underscores.split(" ");
 
-            for(var x = 0; x < matching_index.length; x++){
+            for (var x = 0; x < matching_index.length; x++) {
                 // this holds the value of which index needs to display to the user
                 var changing_index = matching_index[x];
 
@@ -98,10 +100,42 @@ $(function () {
             // no matching letters were found
             // decrease tries by 1
             tries--;
-            // when tries are equal to 0 increase losses by 1;
 
             // displays remaining tries left
             $('#tries').text('Tries: ' + tries);
+
+            // when tries are equal to 0 increase losses by 1 ✅
+            // 
+            if (tries === 0) {
+                // $("#game-alert").show();
+
+                // Increases total number of losses
+                losses++;
+
+                // displays the updated losses
+                $("span#losses").text('Losses: ' + losses);
+
+                // Go to next word and display it to the user
+
+                // go to the next word/index in the array
+                current_word_index++;
+                if(current_word_index === 10){
+                    alert('All words shown. Stop Game')
+                }
+
+                // the current word will be store in the curren_word variable
+                current_word = words[current_word_index];
+
+                // displays the next word
+                displayWord(current_word);
+
+                // resets the number of tries back to 10
+                tries = 10;
+                $('#tries').text('Tries: ' + tries);
+
+
+            }
+
 
         }
 
