@@ -1,6 +1,5 @@
-# UNDER CONSTRUCTION
-
 # Word-Guess-Game-TT
+Guess the word! Use your keyboard to select a letter you believe is in the word. Remember you only have 10 tries per each word. 
 
 
 ## Built With
