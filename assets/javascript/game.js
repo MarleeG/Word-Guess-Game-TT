@@ -6,8 +6,6 @@
  *      create an array of words to guess from ✅
  *      display a word at a time with underscores to show the character count ✅
  */
-const log = console.log;
-
 $(function () {
     var losses = 0;
     var wins = 0;
@@ -30,10 +28,8 @@ $(function () {
         'protein',
         'dairy'
     ];
-    console.log(words.length)
     var letters_keyed = [];
     var decereasing_tries = true;
-
 
     // Two options to select a word from the list
     // Select it from same the order shown in the array - SELECTED THIS OPTION 
@@ -135,26 +131,21 @@ $(function () {
             $('#wins').text(`Wins: ${wins}`);
             $('#losses').text(`Losses: ${losses}`);
             $('#tries').text(`Tries: ${tries}`);
+        }
+
+        // this will clear the letters keyed
+        letters_keyed = [];
+
+        var keyed_letters_placeholder = letters_keyed;
+
+        $("#keyed-letters").text(keyed_letters_placeholder.join(" "));
 
 
+        // the current word will be store in the curren_word variable
+        current_word = words[current_word_index];
 
-        } 
-
-            // else: game is still going
-
-            // this will clear the letters keyed
-            letters_keyed = [];
-
-            var keyed_letters_placeholder = letters_keyed;
-
-            $("#keyed-letters").text(keyed_letters_placeholder.join(" "));
-
-
-            // the current word will be store in the curren_word variable
-            current_word = words[current_word_index];
-
-            // displays the next word
-            displayWord(current_word);
+        // displays the next word
+        displayWord(current_word);
 
     }
 
