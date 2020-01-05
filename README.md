@@ -16,5 +16,5 @@
 * [JQuery](https://api.jquery.com/)
 
 
-## Deployed App - Example
-* [Address Book](https://address-book-marlee-gerard.herokuapp.com) - App
+## Deployed App
+* [Word-Guess-Game-TT](https://marleeg.github.io/Word-Guess-Game-TT/) - App
