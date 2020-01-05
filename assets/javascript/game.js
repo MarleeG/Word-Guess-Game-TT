@@ -18,7 +18,19 @@ $(function () {
     $('#tries').append(tries);
     $("#game-alert").hide();
 
-    var words = ['milk', 'drink', 'butter', 'fish', 'meal', 'cereal', 'healthy', 'wheat', 'protein', 'dairy'];
+    var words = [
+        'milk',
+        'drink',
+        'butter',
+        'fish',
+        'meal',
+        'cereal',
+        'healthy',
+        'wheat',
+        'protein',
+        'dairy'
+    ];
+    console.log(words.length)
     var letters_keyed = [];
     var decereasing_tries = true;
 
@@ -35,7 +47,6 @@ $(function () {
     // this will hold the total number of underscores needed
     // to display for the current word
     var underscores = [];
-
 
     // this function will display the underscores totalling the 
     // length of the characters in the word
@@ -63,8 +74,7 @@ $(function () {
             letters_keyed.push(letter);
             var keyed_letters_placeholder = letters_keyed;
 
-            keyed_letters_placeholder.join(" ");
-            $("#keyed-letters").text(keyed_letters_placeholder);
+            $("#keyed-letters").text(keyed_letters_placeholder.join(" "));
             decereasing_tries = true;
         } else {
             // the letter user has clicked on already exists
@@ -99,25 +109,53 @@ $(function () {
 
         // go to the next word/index in the array
         current_word_index++;
-        if (current_word_index === 10) {
-            alert('All words shown. Stop Game')
-        }
+        if (current_word_index === words.length) {
+            $('#game-alert').show();
+            updateAlert(
+                '#game-alert',
+                'alert-warning',
+                'alert-success',
+                '#game-alert-message',
+                `There are no more words to guess. \nFinal score\n Wins: ${wins} | Losses: ${losses}`
+            );
 
-        // this will clear the letters keyed
-        letters_keyed = [];
+            updateAlert(
+                '#game-alert',
+                'alert-danger',
+                'alert-success',
+                '#game-alert-message',
+                `The word was: ${current_word}. \nThere are no more words to guess. \nFinal score\n Wins: ${wins} | Losses: ${losses}\nFeel free to play again!`
+            );
 
-        var keyed_letters_placeholder = letters_keyed;
+            current_word_index = 0;
+            losses = 0;
+            wins = 0;
+            tries = 0;
 
-        keyed_letters_placeholder.join(" ");
-        $("#keyed-letters").text(keyed_letters_placeholder);
+            $('#wins').text(`Wins: ${wins}`);
+            $('#losses').text(`Losses: ${losses}`);
+            $('#tries').text(`Tries: ${tries}`);
 
 
 
-        // the current word will be store in the curren_word variable
-        current_word = words[current_word_index];
+        } 
 
-        // displays the next word
-        displayWord(current_word);
+            // else: game is still going
+
+            // this will clear the letters keyed
+            letters_keyed = [];
+
+            var keyed_letters_placeholder = letters_keyed;
+
+            $("#keyed-letters").text(keyed_letters_placeholder.join(" "));
+
+
+            // the current word will be store in the curren_word variable
+            current_word = words[current_word_index];
+
+            // displays the next word
+            displayWord(current_word);
+
     }
 
 
@@ -174,10 +212,6 @@ $(function () {
                 $('#word').text(underscores);
             }
 
-
-
-
-
         } else {
             // no matching letters were found
             // decrease tries by 1 if decereasing_tries is true
@@ -210,18 +244,7 @@ $(function () {
                 // resets the number of tries back to 10
                 tries = 10;
                 $('#tries').text('Tries: ' + tries);
-
-
             }
-
-
         }
-
     }
-
-
-
-
-
-    console.log('current_word: ', current_word);
 });
